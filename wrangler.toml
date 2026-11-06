@@ -1,0 +1,16 @@
+# Merge these settings into your existing wrangler.toml.
+# Keep your existing vars, D1 database binding, compatibility settings, etc.
+name = "top-chat"
+main = "worker.js"
+compatibility_date = "2026-11-06"
+
+[[durable_objects.bindings]]
+name = "CHAT_POLLER"
+class_name = "ChatPoller"
+
+[[migrations]]
+tag = "v1-chat-poller"
+new_sqlite_classes = ["ChatPoller"]
+
+[triggers]
+crons = ["* * * * *"]
